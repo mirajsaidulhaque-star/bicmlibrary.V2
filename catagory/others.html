@@ -1,0 +1,1812 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>বিবিধ — মজলিস অনলাইন লাইব্রেরি</title>
+
+    <!-- Google Font (Noto Sans Bengali) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ============================================================
+                   CSS CUSTOM PROPERTIES (Teal Theme) — unchanged
+                   ============================================================ */
+        :root {
+            --teal-900: #0d3b3b;
+            --teal-800: #145a5a;
+            --teal-700: #1a6e6e;
+            --teal-600: #1f7a7a;
+            --teal-500: #2a9d8f;
+            --teal-400: #40b5a5;
+            --teal-300: #6ecfc0;
+            --teal-200: #a0e0d6;
+            --teal-100: #cdf0ea;
+            --teal-50: #eaf9f6;
+
+            --cream: #fefcf5;
+            --cream-dark: #f8f4ea;
+            --white: #ffffff;
+            --gray-900: #1a1a2e;
+            --gray-700: #2d2d44;
+            --gray-500: #6b6b80;
+            --gray-300: #b8b8cc;
+            --gray-100: #e8e8f0;
+
+            --shadow-sm: 0 2px 8px rgba(13, 59, 59, 0.06);
+            --shadow-md: 0 6px 24px rgba(13, 59, 59, 0.10);
+            --shadow-lg: 0 12px 48px rgba(13, 59, 59, 0.14);
+            --shadow-xl: 0 20px 60px rgba(13, 59, 59, 0.18);
+
+            --radius: 16px;
+            --radius-sm: 8px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ============================================================
+                   RESET & BASE
+                   ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans Bengali', sans-serif;
+            background: var(--cream);
+            color: var(--gray-900);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================================
+                   BUTTONS
+                   ============================================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 26px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--teal-600);
+            color: var(--white);
+        }
+        .btn-primary:hover {
+            background: var(--teal-800);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--teal-600);
+            border: 2px solid var(--teal-600);
+        }
+        .btn-outline:hover {
+            background: var(--teal-600);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn-sm {
+            padding: 6px 18px;
+            font-size: 0.85rem;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--teal-700);
+        }
+        .btn-white:hover {
+            background: var(--teal-50);
+            transform: translateY(-2px);
+        }
+
+        /* ============================================================
+                   HEADER / NAVIGATION — identical to original
+                   ============================================================ */
+        .header {
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--teal-50);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--teal-800);
+            flex-shrink: 0;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--teal-600);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+        }
+
+        .logo span {
+            color: var(--gray-700);
+            font-weight: 400;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav a {
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--gray-700);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            background: var(--teal-50);
+            color: var(--teal-700);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown>a {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .dropdown>a i {
+            font-size: 0.7rem;
+            transition: var(--transition);
+        }
+
+        .dropdown:hover>a i {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            min-width: 180px;
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-lg);
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-6px);
+            transition: var(--transition);
+            border: 1px solid var(--teal-50);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 20px;
+            border-radius: 0;
+            font-weight: 400;
+            color: var(--gray-700);
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--teal-50);
+            color: var(--teal-700);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 26px;
+            height: 3px;
+            background: var(--teal-700);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        /* ============================================================
+                   CATEGORY BANNER
+                   ============================================================ */
+        .category-banner {
+            padding: 48px 0 40px;
+            background: linear-gradient(145deg, var(--white) 0%, var(--teal-50) 100%);
+            border-bottom: 1px solid var(--teal-100);
+        }
+
+        .category-banner .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .category-banner .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+
+        .category-banner .breadcrumb a {
+            color: var(--teal-600);
+        }
+        .category-banner .breadcrumb a:hover {
+            color: var(--teal-800);
+        }
+        .category-banner .breadcrumb .sep {
+            margin: 0 6px;
+            color: var(--gray-300);
+        }
+
+        .category-banner .title-group {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .category-banner .title-group .icon {
+            width: 52px;
+            height: 52px;
+            background: var(--teal-600);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.6rem;
+        }
+
+        .category-banner .title-group h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .category-banner .title-group h1 small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--gray-500);
+            display: block;
+            margin-top: 2px;
+        }
+
+        .category-banner .book-count {
+            background: var(--white);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--teal-700);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--teal-100);
+        }
+
+        /* ============================================================
+                   BOOKS GRID (no cover images — clean text cards)
+                   ============================================================ */
+        .category-books {
+            padding: 40px 0 80px;
+            background: var(--cream);
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .book-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 24px 26px 26px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--teal-50);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .book-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--teal-200);
+        }
+
+        .book-card .book-index {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--teal-400);
+            background: var(--teal-50);
+            padding: 2px 12px;
+            border-radius: 50px;
+            margin-bottom: 10px;
+            align-self: flex-start;
+            letter-spacing: 0.5px;
+        }
+
+        .book-card .title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .book-card .author {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            margin-bottom: 16px;
+        }
+
+        .book-card .author i {
+            margin-right: 6px;
+            color: var(--teal-400);
+        }
+
+        .book-card .book-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: auto;
+            align-items: center;
+        }
+
+        .book-card .book-actions .btn {
+            flex: 1;
+            justify-content: center;
+            padding: 8px 14px;
+            font-size: 0.82rem;
+            min-width: 70px;
+        }
+
+        .book-card .book-actions .btn-read {
+            background: var(--teal-50);
+            color: var(--teal-700);
+            border: 1px solid var(--teal-200);
+        }
+        .book-card .book-actions .btn-read:hover {
+            background: var(--teal-600);
+            color: var(--white);
+            border-color: var(--teal-600);
+        }
+
+        .book-card .book-actions .btn-download {
+            background: var(--teal-600);
+            color: var(--white);
+            border: none;
+        }
+        .book-card .book-actions .btn-download:hover {
+            background: var(--teal-800);
+        }
+
+        .book-card .book-actions .btn-share {
+            background: transparent;
+            color: var(--gray-500);
+            border: 1px solid var(--gray-300);
+            flex: 0.4;
+            min-width: 44px;
+            padding: 8px;
+        }
+        .book-card .book-actions .btn-share:hover {
+            background: var(--teal-50);
+            border-color: var(--teal-400);
+            color: var(--teal-600);
+        }
+
+        /* ============================================================
+                   FOOTER — identical to original
+                   ============================================================ */
+        .footer {
+            background: var(--gray-900);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 56px 0 0;
+            border-top: 4px solid var(--teal-500);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 14px;
+            position: relative;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 32px;
+            height: 3px;
+            background: var(--teal-400);
+            border-radius: 4px;
+        }
+
+        .footer-col p {
+            font-size: 0.92rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.92rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--teal-300);
+            transform: translateX(4px);
+        }
+
+        .footer-col ul li a i {
+            font-size: 0.7rem;
+            color: var(--teal-400);
+        }
+
+        .footer-bottom {
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-bottom a {
+            color: var(--teal-300);
+        }
+
+        .footer-bottom a:hover {
+            color: var(--teal-200);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: var(--teal-600);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* ============================================================
+                   RESPONSIVE
+                   ============================================================ */
+        @media (max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+
+            .category-banner .title-group h1 {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                position: fixed;
+                top: 72px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                align-items: stretch;
+                padding: 16px 24px 24px;
+                box-shadow: var(--shadow-lg);
+                gap: 2px;
+                transform: translateY(-120%);
+                transition: var(--transition);
+                opacity: 0;
+                visibility: hidden;
+                border-top: 2px solid var(--teal-50);
+            }
+
+            .nav.open {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav a {
+                padding: 12px 16px;
+                border-radius: var(--radius-sm);
+            }
+
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                border: none;
+                padding: 4px 0 4px 20px;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                display: none;
+                background: var(--cream);
+                border-radius: var(--radius-sm);
+                margin-top: 2px;
+            }
+
+            .dropdown:hover .dropdown-menu {
+                display: block;
+            }
+
+            .dropdown>a i {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .category-banner {
+                padding: 32px 0 28px;
+            }
+
+            .category-banner .container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+            }
+
+            .category-banner .title-group h1 {
+                font-size: 1.4rem;
+            }
+
+            .category-banner .title-group h1 small {
+                font-size: 0.85rem;
+            }
+
+            .category-banner .title-group .icon {
+                width: 44px;
+                height: 44px;
+                font-size: 1.3rem;
+            }
+
+            .category-banner .book-count {
+                font-size: 0.8rem;
+                padding: 4px 16px;
+            }
+
+            .books-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+
+            .book-card {
+                padding: 18px 16px 20px;
+            }
+
+            .book-card .title {
+                font-size: 0.95rem;
+            }
+
+            .book-card .author {
+                font-size: 0.8rem;
+            }
+
+            .book-card .book-actions .btn {
+                font-size: 0.7rem;
+                padding: 6px 10px;
+                min-width: 50px;
+            }
+
+            .book-card .book-actions .btn-share {
+                min-width: 36px;
+                padding: 6px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .books-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .book-card {
+                padding: 14px 12px 16px;
+            }
+
+            .book-card .title {
+                font-size: 0.85rem;
+            }
+
+            .book-card .author {
+                font-size: 0.7rem;
+                margin-bottom: 12px;
+            }
+
+            .book-card .book-actions .btn {
+                font-size: 0.6rem;
+                padding: 4px 8px;
+                min-width: 40px;
+                gap: 4px;
+            }
+
+            .book-card .book-actions .btn-share {
+                min-width: 30px;
+                padding: 4px;
+            }
+
+            .category-banner .title-group h1 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================================================
+    1. HEADER & NAVIGATION — identical to original
+    ============================================================ -->
+    <header class="header" role="banner">
+        <div class="container">
+
+            <a href="../index.html" class="logo" aria-label="মজলিস অনলাইন লাইব্রেরি">
+                <span class="logo-icon"><i class="fas fa-book-open"></i></span>
+                মজলিস <span>লাইব্রেরি</span>
+            </a>
+
+            <nav class="nav" id="mainNav" role="navigation" aria-label="প্রধান নেভিগেশন">
+                <a href="../index.html">হোম</a>
+
+                <div class="dropdown">
+                    <a href="#">
+                        সিলেবাস <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="#">কর্মী</a>
+                        <a href="#">সহযোগী</a>
+                        <a href="#">সদস্য</a>
+                        <a href="#">উচ্চতর</a>
+                    </div>
+                </div>
+
+                <a href="../books_category.html" class="active">সকল বই</a>
+                <a href="#">প্রবন্ধ</a>
+                <a href="#">আমাদের সম্পর্কে</a>
+            </nav>
+
+            <button class="nav-toggle" id="navToggle" aria-label="মেনু খুলুন/বন্ধ করুন">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ============================================================
+        2. CATEGORY BANNER
+        ============================================================ -->
+        <section class="category-banner" aria-labelledby="category-title">
+            <div class="container">
+
+                <div class="title-group">
+                    <div class="icon"><i class="fas fa-layer-group"></i></div>
+                    <div>
+                        <h1 id="category-title">
+                            বিবিধ
+                            <small>বিভিন্ন বিষয়ের বইয়ের সমাহার</small>
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="book-count">
+                    <i class="fas fa-book"></i> ৬৮টি বই
+                </div>
+
+                <div class="breadcrumb">
+                    <a href="#">হোম</a>
+                    <span class="sep">/</span>
+                    <a href="../books_category.html">সকল বই</a>
+                    <span class="sep">/</span>
+                    <span style="color:var(--teal-700);font-weight:500;">বিবিধ</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================================
+        3. BOOKS GRID — without redundant header, no cover images
+        ============================================================ -->
+        <section class="category-books" aria-labelledby="books-title">
+            <div class="container">
+
+                <div class="books-grid">
+
+                    <!-- 01. সেইভ আওয়ার সিস্টারস -->
+                    <div class="book-card">
+                        <span class="book-index">০১</span>
+                        <div class="title">সেইভ আওয়ার সিস্টারস</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> সাদ আমির</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/13qFclgyVPkmTxR2InCD-GWAFjzD3L8co/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=13qFclgyVPkmTxR2InCD-GWAFjzD3L8co" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 02. তারকীব-১ম ও ২য় খন্ড এসো আরবী শিখি -->
+                    <div class="book-card">
+                        <span class="book-index">০২</span>
+                        <div class="title">তারকীব-১ম ও ২য় খন্ড এসো আরবী শিখি</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> উৎস থেকে পাওয়া যায়নি</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/13MA1iMEbUP4J3P0Zg2THesWWsdzs5DYr/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=13MA1iMEbUP4J3P0Zg2THesWWsdzs5DYr" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 03. আরবী রস -->
+                    <div class="book-card">
+                        <span class="book-index">০৩</span>
+                        <div class="title">আরবী রস</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> আব্দুল্লাহ মাহমুদ নজীব</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1U-4r3Ji39hnEC_HDYxh459C2l_b8lkV1/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1U-4r3Ji39hnEC_HDYxh459C2l_b8lkV1" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 04. আধুনিক আরবি ব্যাকরণ -->
+                    <div class="book-card">
+                        <span class="book-index">০৪</span>
+                        <div class="title">আধুনিক আরবি ব্যাকরণ</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> শহীদুল্লাহ মিল্লাত</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1Br1MfbvqGU5p7fq6tcHkX01Dg6rTOj7D/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1Br1MfbvqGU5p7fq6tcHkX01Dg6rTOj7D" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 05. ইলুমিনাতি -->
+                    <div class="book-card">
+                        <span class="book-index">০৫</span>
+                        <div class="title">ইলুমিনাতি</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> আবদুল কাইয়্যুম আহমেদ</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1WTmHkLs0Rc_-RXSCzxlP8z5TJNsywdZc/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1WTmHkLs0Rc_-RXSCzxlP8z5TJNsywdZc" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 06. জীন জাতির বিষ্ময়কর ইতিহাস -->
+                    <div class="book-card">
+                        <span class="book-index">০৬</span>
+                        <div class="title">জীন জাতির বিষ্ময়কর ইতিহাস</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> জালালউদ্দিন সুয়ুতী (রঃ)</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1FJT9qd_7kNTSanFZP1ltGe-SBmV2B8LK/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1FJT9qd_7kNTSanFZP1ltGe-SBmV2B8LK" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 07. সীমান্ত ঈগল -->
+                    <div class="book-card">
+                        <span class="book-index">০৭</span>
+                        <div class="title">সীমান্ত ঈগল</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> নসীম হিজাযী</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1XTBhv7peed4CcGmEFE8TE7HI7mpDsFY5/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1XTBhv7peed4CcGmEFE8TE7HI7mpDsFY5" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 08. শব্দ ও সংস্কৃতি সন্ত্রাস -->
+                    <div class="book-card">
+                        <span class="book-index">০৮</span>
+                        <div class="title">শব্দ ও সংস্কৃতি সন্ত্রাস</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> জহুর বিন ওসমান</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1U7zftv3QGcysdFVeFk6VZq9HabbJuy1b/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1U7zftv3QGcysdFVeFk6VZq9HabbJuy1b" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 09. খারেজি উৎপত্তি, চিন্তাধারা ও ক্রমবিকাশ -->
+                    <div class="book-card">
+                        <span class="book-index">০৯</span>
+                        <div class="title">খারেজি উৎপত্তি, চিন্তাধারা ও ক্রমবিকাশ</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> ড. আলী মুহাম্মদ সাল্লাবি</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1cyyiH4XtGCYCrKHFsZREKTgkfcGWEHcZ/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1cyyiH4XtGCYCrKHFsZREKTgkfcGWEHcZ" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 10. আরব কন্যার আর্তনাদ -->
+                    <div class="book-card">
+                        <span class="book-index">১০</span>
+                        <div class="title">আরব কন্যার আর্তনাদ</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> এনায়েতুল্লাহ আলতামাস</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1CYmK9ZNUEhN5MCrij3DzEEEwT27ME0Q0/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1CYmK9ZNUEhN5MCrij3DzEEEwT27ME0Q0" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 11. খ্রিষ্টানদের জন্য বড়দিনের উপহার -->
+                    <div class="book-card">
+                        <span class="book-index">১১</span>
+                        <div class="title">খ্রিষ্টানদের জন্য বড়দিনের উপহার</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> ব্রাদার রাহুল হুসাইন</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1W68Q8ft24E1uWV9Ax_rvvexweICHIgre/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1W68Q8ft24E1uWV9Ax_rvvexweICHIgre" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 12. মিলাদ ও কিয়াম বিতর্কের সমাধান -->
+                    <div class="book-card">
+                        <span class="book-index">১২</span>
+                        <div class="title">মিলাদ ও কিয়াম বিতর্কের সমাধান</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> মোস্তফা হা</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1GGEjxFGCxje3h_DfNEJT_ZnK2pYmZFzh/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1GGEjxFGCxje3h_DfNEJT_ZnK2pYmZFzh" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 13. হিদায়া কেতাবের একি হেদায়াত -->
+                    <div class="book-card">
+                        <span class="book-index">১৩</span>
+                        <div class="title">হিদায়া কেতাবের একি হেদায়াত</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> প্রফেসর এ এইচ এম শামসুর রহমান</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1AQfyeXIq_B9D6bA_8yRqxiZvwN_elj56/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1AQfyeXIq_B9D6bA_8yRqxiZvwN_elj56" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 14. ইসলামে ধর্মীয় চিন্তার পুনর্গঠন -->
+                    <div class="book-card">
+                        <span class="book-index">১৪</span>
+                        <div class="title">ইসলামে ধর্মীয় চিন্তার পুনর্গঠন</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> ড. ইকবাল</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1iiP-rl7AC-m3-TKKbOf76-WBD2jYLq9f/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1iiP-rl7AC-m3-TKKbOf76-WBD2jYLq9f" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 15. গ্রে লেডি অফ বাগরাম -->
+                    <div class="book-card">
+                        <span class="book-index">১৫</span>
+                        <div class="title">গ্রে লেডি অফ বাগরাম</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> আফিয়া সিদ্দিকী</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1Kza3iCRbzmd6WWGYnAigrRuL8KixRc9m/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1Kza3iCRbzmd6WWGYnAigrRuL8KixRc9m" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 16. এক মিনিটের মাদ্রাসা ইংরেজি -->
+                    <div class="book-card">
+                        <span class="book-index">১৬</span>
+                        <div class="title">এক মিনিটের মাদ্রাসা ইংরেজি</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> উৎস থেকে পাওয়া যায়নি</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/14ZKPfhyiC2_XDa5ncz5Er7XsG8jS2haL/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=14ZKPfhyiC2_XDa5ncz5Er7XsG8jS2haL" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 17. আমালিয়াতে কাশ্মীরি -->
+                    <div class="book-card">
+                        <span class="book-index">১৭</span>
+                        <div class="title">আমালিয়াতে কাশ্মীরি</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> উৎস থেকে পাওয়া যায়নি</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1wiSS8JVAJQkB2b1JRg7sqd4fHgYuDjQe/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1wiSS8JVAJQkB2b1JRg7sqd4fHgYuDjQe" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 18. বিলিয়ন ডলার মুসলিম -->
+                    <div class="book-card">
+                        <span class="book-index">১৮</span>
+                        <div class="title">বিলিয়ন ডলার মুসলিম</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> উৎস থেকে পাওয়া যায়নি</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/12uNQ-52But5rRdU8fj6t1SnIIdzYV1v_/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=12uNQ-52But5rRdU8fj6t1SnIIdzYV1v_" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 19. রাহে নাজাত -->
+                    <div class="book-card">
+                        <span class="book-index">১৯</span>
+                        <div class="title">রাহে নাজাত</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> উৎস থেকে পাওয়া যায়নি</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/112CNeQhYFWzxPiTFvAjnWtx9RbU3nWny/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=112CNeQhYFWzxPiTFvAjnWtx9RbU3nWny" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 20. মুখতাসার যাদুল মাআদ -->
+                    <div class="book-card">
+                        <span class="book-index">২০</span>
+                        <div class="title">মুখতাসার যাদুল মাআদ</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> আব্দুল ওয়াহাব</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1TxtLy0mGdJk42AtyJe5RZjQYqMHgmoZh/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1TxtLy0mGdJk42AtyJe5RZjQYqMHgmoZh" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 21. সেপালকার ইন লাভ -->
+                    <div class="book-card">
+                        <span class="book-index">২১</span>
+                        <div class="title">সেপালকার ইন লাভ</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> শাইখ আতিক উল্লাহ</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/12ogYuwAusBnUc2kZXDSj1Aq65XpZ5N0P/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=12ogYuwAusBnUc2kZXDSj1Aq65XpZ5N0P" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 22. আর্গুমেন্টস অব আরজু_ম -->
+                    <div class="book-card">
+                        <span class="book-index">২২</span>
+                        <div class="title">আর্গুমেন্টস অব আরজু_ম</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> আরিফুল ইসলাম</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1IphRstsG-Ls3dTdUN71qeFTOEo4iZnkF/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1IphRstsG-Ls3dTdUN71qeFTOEo4iZnkF" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 23. প্রত্যাবর্তন-২ -->
+                    <div class="book-card">
+                        <span class="book-index">২৩</span>
+                        <div class="title">প্রত্যাবর্তন-২</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> আরিফ আজাদ</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1hlqbDumTNy30aJzsN2UMafMkavkGVJjJ/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1hlqbDumTNy30aJzsN2UMafMkavkGVJjJ" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 24. তুমি ফিরবে বলে ফিমেইল ভার্সন -->
+                    <div class="book-card">
+                        <span class="book-index">২৪</span>
+                        <div class="title">তুমি ফিরবে বলে ফিমেইল ভার্সন</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> জাকারিয়া মাসুদ</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1pjVidXtPe7zbBXRVt0PNT7N4VDYKIwQ-/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1pjVidXtPe7zbBXRVt0PNT7N4VDYKIwQ-" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 25. সন্ধান -->
+                    <div class="book-card">
+                        <span class="book-index">২৫</span>
+                        <div class="title">সন্ধান</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> হুজুর হয়ে টিম</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/10cqReqA_U--0R3v7lItdJ9bYYmW7F2as/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=10cqReqA_U--0R3v7lItdJ9bYYmW7F2as" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 26. দ্যা রিয়েল লাভ -->
+                    <div class="book-card">
+                        <span class="book-index">২৬</span>
+                        <div class="title">দ্যা রিয়েল লাভ</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> শারমিন জান্নাত</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/10cZy-H4yYArMVjHeKSrIe9J6Yk-Xc5dx/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=10cZy-H4yYArMVjHeKSrIe9J6Yk-Xc5dx" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 27. আয়নাঘর -->
+                    <div class="book-card">
+                        <span class="book-index">২৭</span>
+                        <div class="title">আয়নাঘর</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> ড ইয়াদ কুনাইবী</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1EtWCxLFnvWRFpcedFIt8LKi7fApowGCb/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1EtWCxLFnvWRFpcedFIt8LKi7fApowGCb" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 28. দুনিয়ার ওপারে -->
+                    <div class="book-card">
+                        <span class="book-index">২৮</span>
+                        <div class="title">দুনিয়ার ওপারে</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> মুফতি মুহাম্মদ তকী উসমানী</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1_CI-w8HJQUggt2a0Rk2WIu6bez_OI_Sb/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1_CI-w8HJQUggt2a0Rk2WIu6bez_OI_Sb" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 29. কাফেরদের সাথে কঠোরতা -->
+                    <div class="book-card">
+                        <span class="book-index">২৯</span>
+                        <div class="title">কাফেরদের সাথে কঠোরতা</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> মুফতি তারেকুজ্জামান</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1ZJtGqyc_TneiPOGY8vox9-91WQdMrxJi/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1ZJtGqyc_TneiPOGY8vox9-91WQdMrxJi" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 30. আল্লাহর দরবারে ধরনা -->
+                    <div class="book-card">
+                        <span class="book-index">৩০</span>
+                        <div class="title">আল্লাহর দরবারে ধরনা</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> গোলাম আযম</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1Ysx4O6ZJo6m7Wmxiv6rfgY0Ul5fjHcWB/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1Ysx4O6ZJo6m7Wmxiv6rfgY0Ul5fjHcWB" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 31. আল্লাহ যা করেন ভালোর জন্যই করেন -->
+                    <div class="book-card">
+                        <span class="book-index">৩১</span>
+                        <div class="title">আল্লাহ যা করেন ভালোর জন্যই করেন</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> ড. এ আর খান</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1YmpeDWNHbOVc92S122tHkc9p10QJNMBr/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1YmpeDWNHbOVc92S122tHkc9p10QJNMBr" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 32. আগুনের কারাগার -->
+                    <div class="book-card">
+                        <span class="book-index">৩২</span>
+                        <div class="title">আগুনের কারাগার</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> আব্দুর রাজ্জাক হেকনোভিক</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1YMWnZ27_YJwgtdzj_u8ngEka-GIlZVFD/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1YMWnZ27_YJwgtdzj_u8ngEka-GIlZVFD" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 33. শারিয়া কি বলে আমরা কি করি -->
+                    <div class="book-card">
+                        <span class="book-index">৩৩</span>
+                        <div class="title">শারিয়া কি বলে আমরা কি করি</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> হাসান মাহমুদ</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1XkSZ3AZl5Kizs29h-qBvFNwACQHy56JA/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1XkSZ3AZl5Kizs29h-qBvFNwACQHy56JA" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 34. বাক্সের বাইরে -->
+                    <div class="book-card">
+                        <span class="book-index">৩৪</span>
+                        <div class="title">বাক্সের বাইরে</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> শরীফ আবু হায়াত অপু</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1XFOBO80XI4osrI3yhskKxgmSadVU92ne/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1XFOBO80XI4osrI3yhskKxgmSadVU92ne" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 35. খৃষ্টধর্মের স্বরুপ -->
+                    <div class="book-card">
+                        <span class="book-index">৩৫</span>
+                        <div class="title">খৃষ্টধর্মের স্বরুপ</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> মুফতি তাকী উসমানী</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1WVJNm2MqgIlSLtWEE-Vr97rCB_jNZf-l/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1WVJNm2MqgIlSLtWEE-Vr97rCB_jNZf-l" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 36. আরশের ছায়া -->
+                    <div class="book-card">
+                        <span class="book-index">৩৬</span>
+                        <div class="title">আরশের ছায়া</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> আবদুল হামীদ ফাইযী</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1UbchuQne5TkvvsNNu3DfH_xPmgGlSl-E/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1UbchuQne5TkvvsNNu3DfH_xPmgGlSl-E" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 37. ওগো শুনছো -->
+                    <div class="book-card">
+                        <span class="book-index">৩৭</span>
+                        <div class="title">ওগো শুনছো</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> শাইখ আতিক উল্লাহ</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1TC5IEnFMqgnHfiUtPDyOpBhkPfxZ_5A-/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1TC5IEnFMqgnHfiUtPDyOpBhkPfxZ_5A-" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 38. শয়তা‌নের বিরু‌দ্ধে-লড়াই -->
+                    <div class="book-card">
+                        <span class="book-index">৩৮</span>
+                        <div class="title">শয়তা‌নের বিরু‌দ্ধে-লড়াই</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> মাহমুদ বিন নূর</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1TBE5uSNZeZjiP2PKj6xsQZbLn19p3FtS/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1TBE5uSNZeZjiP2PKj6xsQZbLn19p3FtS" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 39. গুরাবা -->
+                    <div class="book-card">
+                        <span class="book-index">৩৯</span>
+                        <div class="title">গুরাবা</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> আবূ বকর আল আজুররী রহ.</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1T9YobdbQ821R55U31Tp0G8EuoveEisBh/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1T9YobdbQ821R55U31Tp0G8EuoveEisBh" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 40. কাশগড় কত না অশ্রুজল -->
+                    <div class="book-card">
+                        <span class="book-index">৪০</span>
+                        <div class="title">কাশগড় কত না অশ্রুজল</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> মোহাম্মদ এনামুল হোসাইন</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/12Tcyt24cKF3lz-nZ1H6t5-jf7J2PUYK5/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=12Tcyt24cKF3lz-nZ1H6t5-jf7J2PUYK5" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 41. বর্ষবরণ -->
+                    <div class="book-card">
+                        <span class="book-index">৪১</span>
+                        <div class="title">বর্ষবরণ</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> শরীফা খাতুন</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1P2oz7T_-_7FFbD1O8ij0ab8fs--Rg9sS/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1P2oz7T_-_7FFbD1O8ij0ab8fs--Rg9sS" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 42. চার তারা -->
+                    <div class="book-card">
+                        <span class="book-index">৪২</span>
+                        <div class="title">চার তারা</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> আরিফুল ইসলাম</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/16s_xsJJEag7AWaTyCgFrMPxW1nzuMxlA/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=16s_xsJJEag7AWaTyCgFrMPxW1nzuMxlA" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 43. আল্লাহ প্রেমের সন্ধানে -->
+                    <div class="book-card">
+                        <span class="book-index">৪৩</span>
+                        <div class="title">আল্লাহ প্রেমের সন্ধানে</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> ড. মুহাম্মদ ইবনে আবদুর রহমান আরিফী</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1lAVT3DcChY82u2ELNe33sJR1s9uRnKSH/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1lAVT3DcChY82u2ELNe33sJR1s9uRnKSH" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 44. এপিটাফ -->
+                    <div class="book-card">
+                        <span class="book-index">৪৪</span>
+                        <div class="title">এপিটাফ</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> উস্তাদ মুহাম্মাদ হুবলস</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1xaiAqgeTSGWEf0Y6AjBmVsjlGXzhnk9g/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1xaiAqgeTSGWEf0Y6AjBmVsjlGXzhnk9g" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 45. প্রথম দিনের সূর্য -->
+                    <div class="book-card">
+                        <span class="book-index">৪৫</span>
+                        <div class="title">প্রথম দিনের সূর্য</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> তারিক জামিল</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1eQ6_2PuZ-lyncSuWfU3_xMnxZEBBdm2t/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1eQ6_2PuZ-lyncSuWfU3_xMnxZEBBdm2t" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 46. প্রশ্নোত্তর -->
+                    <div class="book-card">
+                        <span class="book-index">৪৬</span>
+                        <div class="title">প্রশ্নোত্তর</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> আরিফ আহমেদ</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/155xxBZuxXVqEkAwEOPVKYzZ0kxwlHRD5/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=155xxBZuxXVqEkAwEOPVKYzZ0kxwlHRD5" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 47. শয়তানের চক্রান্ত সমকামিতা অধ্যায় -->
+                    <div class="book-card">
+                        <span class="book-index">৪৭</span>
+                        <div class="title">শয়তানের চক্রান্ত সমকামিতা অধ্যায়</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> ইমাম ইবনু আবিদ দুনিয়া রহিমাহুল্লাহ</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1bI7UfJHkAA5xien2aeh435C3PooWHRkQ/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1bI7UfJHkAA5xien2aeh435C3PooWHRkQ" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 48. এক হাতে মুসাফাহা -->
+                    <div class="book-card">
+                        <span class="book-index">৪৮</span>
+                        <div class="title">এক হাতে মুসাফাহা</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> কামাল আহমাদ</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1QcI565lCK10ufg1IJjRLx98UazjFGiKz/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1QcI565lCK10ufg1IJjRLx98UazjFGiKz" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 49. ইনফাক ফি সাবিলিল্লাহ -->
+                    <div class="book-card">
+                        <span class="book-index">৪৯</span>
+                        <div class="title">ইনফাক ফি সাবিলিল্লাহ</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> মতিউর রহমান নিজামী</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/18fz0ROKj1H8Bj1KlcKQ-uXbN7D8la3ww/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=18fz0ROKj1H8Bj1KlcKQ-uXbN7D8la3ww" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 50. আকাশের ওপারে আকাশ -->
+                    <div class="book-card">
+                        <span class="book-index">৫০</span>
+                        <div class="title">আকাশের ওপারে আকাশ</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> লস্ট মডেস্টি</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1WSWfOui0rRtLOWZL5e5omZdQeo_zuBOC/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1WSWfOui0rRtLOWZL5e5omZdQeo_zuBOC" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 51. বান্দার ডাকে আল্লাহর সাড়া -->
+                    <div class="book-card">
+                        <span class="book-index">৫১</span>
+                        <div class="title">বান্দার ডাকে আল্লাহর সাড়া</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> সায়িদ ইবনু আলি আল কাহতানি</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1A-VeyvmQ-5aRYyJ7jWf57s-LgwW_Nkwe/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1A-VeyvmQ-5aRYyJ7jWf57s-LgwW_Nkwe" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 52. ফাযায়েলে তাহাজ্জুদ -->
+                    <div class="book-card">
+                        <span class="book-index">৫২</span>
+                        <div class="title">ফাযায়েলে তাহাজ্জুদ</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> মাওলানা খালেদ সাইফুল্লাহ</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/10XY1o1-BPb21KKunbhVCZdlYCJLxz9ba/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=10XY1o1-BPb21KKunbhVCZdlYCJLxz9ba" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 53. নজরের হেফাজত সফলতার হাতিয়ার -->
+                    <div class="book-card">
+                        <span class="book-index">৫৩</span>
+                        <div class="title">নজরের হেফাজত সফলতার হাতিয়ার</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> ড.শাইখ মাহমুদ মিসরি</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1aFYl4WJJTF2n4DOjoykI45s1MkNP2i7k/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1aFYl4WJJTF2n4DOjoykI45s1MkNP2i7k" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 54. যে জীবন ফড়িঙের যে জীবন জোনাকির -->
+                    <div class="book-card">
+                        <span class="book-index">৫৪</span>
+                        <div class="title">যে জীবন ফড়িঙের যে জীবন জোনাকির</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> সাজিদ ইসলাম</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1-Q0im2Krnyy5tntQYNsfO1vueZS7wAmi/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1-Q0im2Krnyy5tntQYNsfO1vueZS7wAmi" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 55. প্রেরণার বাতিঘর -->
+                    <div class="book-card">
+                        <span class="book-index">৫৫</span>
+                        <div class="title">প্রেরণার বাতিঘর</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> বি আই সি এস</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/18rHXDUzVJiGdKFG3Pc2n3ak9iCxUeMV5/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=18rHXDUzVJiGdKFG3Pc2n3ak9iCxUeMV5" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 56. সৌভাগ্যময় জীবনের পূর্ণাঙ্গ উপায় -->
+                    <div class="book-card">
+                        <span class="book-index">৫৬</span>
+                        <div class="title">সৌভাগ্যময় জীবনের পূর্ণাঙ্গ উপায়</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> ড. আবু বকর জাকারিয়া</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1bq5ZrDINlast4iXqh2LqUO8QONbioTUi/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1bq5ZrDINlast4iXqh2LqUO8QONbioTUi" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 57. আবুল হাসান আলি নদবী এর জীবন ও কর্ম -->
+                    <div class="book-card">
+                        <span class="book-index">৫৭</span>
+                        <div class="title">আবুল হাসান আলি নদবী এর জীবন ও কর্ম</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> মো সালমান</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1iwDvqFH9-CY4Gky8-Cj0hVBfo-81jPmt/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1iwDvqFH9-CY4Gky8-Cj0hVBfo-81jPmt" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 58. দৈনন্দিন জীবনে ইসলাম -->
+                    <div class="book-card">
+                        <span class="book-index">৫৮</span>
+                        <div class="title">দৈনন্দিন জীবনে ইসলাম</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> শরীফুল ইসলাম বিন জয়নুল আবেদিন</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1SWkAIbbyD79Y6QOAtG0qrxrpjvIJZ7qz/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1SWkAIbbyD79Y6QOAtG0qrxrpjvIJZ7qz" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 59. দুজনার পাঠশালা -->
+                    <div class="book-card">
+                        <span class="book-index">৫৯</span>
+                        <div class="title">দুজনার পাঠশালা</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> শাইখ আদেল ফাতহি আব্দুল্লাহ</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1o_VTF_--asOZmIEhTBmV2xpp3p5fUvqq/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1o_VTF_--asOZmIEhTBmV2xpp3p5fUvqq" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 60. মখমলী ভালোবাসা -->
+                    <div class="book-card">
+                        <span class="book-index">৬০</span>
+                        <div class="title">মখমলী ভালোবাসা</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> ড.কারীম আশ শাযিলী</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1TAKsCsmTIw3MjxhTLpXxH1iYqixEdsO8/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1TAKsCsmTIw3MjxhTLpXxH1iYqixEdsO8" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 61. সুবহে সাদিক -->
+                    <div class="book-card">
+                        <span class="book-index">৬১</span>
+                        <div class="title">সুবহে সাদিক</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> খুররাম জাহ মুরাদ</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1JKXPRPoBsYiqP3NqcDGd07MzmnzGsyiL/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1JKXPRPoBsYiqP3NqcDGd07MzmnzGsyiL" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 62. মহান রবের আশ্রয়ে -->
+                    <div class="book-card">
+                        <span class="book-index">৬২</span>
+                        <div class="title">মহান রবের আশ্রয়ে</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> উৎস থেকে পাওয়া যায়নি</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1IYRfQWhE5C6Kcg9emPUY7BJY1vDOXn-4/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1IYRfQWhE5C6Kcg9emPUY7BJY1vDOXn-4" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 63. অনেক আঁধার পেরিয়ে -->
+                    <div class="book-card">
+                        <span class="book-index">৬৩</span>
+                        <div class="title">অনেক আঁধার পেরিয়ে</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> মুহাম্মদ জাভেদ কায়সার রহ.</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1-HzF-PRhXmWamHIpSWLska8RHZFXnIEY/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1-HzF-PRhXmWamHIpSWLska8RHZFXnIEY" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 64. চয়ন -->
+                    <div class="book-card">
+                        <span class="book-index">৬৪</span>
+                        <div class="title">চয়ন</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> রেহনুমা বিনতে আনিস</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/15KlkuYOlKtDhlBtlfeFhJ4MhekTvsvVV/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=15KlkuYOlKtDhlBtlfeFhJ4MhekTvsvVV" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 65. কাল থেকে ভালো হয়ে যাবো -->
+                    <div class="book-card">
+                        <span class="book-index">৬৫</span>
+                        <div class="title">কাল থেকে ভালো হয়ে যাবো</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> মাহিন মাহমুদ</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1A4NcN9ImEEJSPbS7DX2SuYVFf6XMa0VL/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1A4NcN9ImEEJSPbS7DX2SuYVFf6XMa0VL" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 66. হুজুর হয়ে হাসো কেন -->
+                    <div class="book-card">
+                        <span class="book-index">৬৬</span>
+                        <div class="title">হুজুর হয়ে হাসো কেন</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> হুজুর হয়ে টিম</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/158P3VamUKHmsXVaORsegUm0VDatYtEZZ/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=158P3VamUKHmsXVaORsegUm0VDatYtEZZ" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 67. শতাব্দীর চিঠি -->
+                    <div class="book-card">
+                        <span class="book-index">৬৭</span>
+                        <div class="title">শতাব্দীর চিঠি</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> মুসা আল হাফিজ</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1JLxjU7LQ68y-IX00gjKDk77WF_aQEXTi/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1JLxjU7LQ68y-IX00gjKDk77WF_aQEXTi" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 68. আসমান -->
+                    <div class="book-card">
+                        <span class="book-index">৬৮</span>
+                        <div class="title">আসমান</div>
+                        <div class="author"><i class="fas fa-user-pen"></i> লতিফুর রহমান শিবলী</div>
+                        <div class="book-actions">
+                            <a href="https://drive.google.com/file/d/1BURijJANxpeOYnwwPLmje67mhRjTbAXW/view?usp=drivesdk" target="_blank" class="btn btn-read btn-sm"><i class="fas fa-book-open"></i> পড়ুন</a>
+                            <a href="https://drive.google.com/uc?export=download&id=1BURijJANxpeOYnwwPLmje67mhRjTbAXW" target="_blank" class="btn btn-download btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="#" class="btn btn-share btn-sm"><i class="fas fa-share-alt"></i></a>
+                        </div>
+                    </div>
+
+                </div> <!-- end .books-grid -->
+
+                <!-- Back to all books -->
+                <div style="text-align:center;margin-top:40px;">
+                    <a href="https://allbook400.netlify.app/" class="btn btn-outline">
+                        <i class="fas fa-arrow-left"></i> সকল বিভাগে ফিরে যান
+                    </a>
+                </div>
+
+            </div> <!-- end .container -->
+        </section>
+
+    </main>
+
+    <!-- ============================================================
+    4. FOOTER — identical to original
+    ============================================================ -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <!-- About the library -->
+                <div class="footer-col">
+                    <h4>মজলিস অনলাইন লাইব্রেরি</h4>
+                    <p>
+                        জ্ঞান অর্জন, চরিত্র গঠন ও ইসলামী সমাজ বিপ্লবের লক্ষ্যে
+                        বাংলাদেশ ইসলামী ছাত্র মজলিসের উদ্যোগে নির্মিত ডিজিটাল গ্রন্থাগার।
+                        শিক্ষার্থী, গবেষক ও জ্ঞানপিপাসুদের জন্য উন্মুক্ত।
+                    </p>
+                    <p style="margin-top:10px;font-size:0.85rem;color:var(--teal-300);">
+                        <i class="fas fa-calendar-check"></i> প্রতিষ্ঠা: ৫ জানুয়ারি ১৯৯০
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-col">
+                    <h4>দ্রুত লিংক</h4>
+                    <ul>
+                        <li><a href="../index.html"><i class="fas fa-chevron-right"></i> হোম</a></li>
+                        <li><a href="../books_category.html"><i class="fas fa-chevron-right"></i> সকল বই</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> প্রবন্ধ</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> আমাদের সম্পর্কে</a></li>
+                    </ul>
+                </div>
+
+                <!-- Important Pages -->
+                <div class="footer-col">
+                    <h4>গুরুত্বপূর্ণ পেজ</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> কর্মী</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> সহযোগী সদস্য</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i>  সদস্য</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> উচ্চতর বিভাগ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Goals & Ideals -->
+                <div class="footer-col">
+                    <h4>লক্ষ্য ও আদর্শ</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> আমাদের দাওয়াত </a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> লক্ষ্য ও আদর্শ </a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> কর্মসূচী </a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> ইসলামী আন্দোলন</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Footer bottom -->
+            <div class="footer-bottom">
+                <span>
+                    &copy; ২০২৬ <a href="#">মজলিস অনলাইন লাইব্রেরি</a> — বাংলাদেশ ইসলামী ছাত্র মজলিস
+                </span>
+                <div class="footer-social">
+                    <a href="#" aria-label="ফেসবুক"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="ইউটিউব"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="টুইটার"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="ইনস্টাগ্রাম"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Nav Toggle
+        const navToggle = document.getElementById('navToggle');
+        const mainNav = document.getElementById('mainNav');
+
+        navToggle.addEventListener('click', function() {
+            mainNav.classList.toggle('open');
+            this.classList.toggle('active');
+            const isOpen = mainNav.classList.contains('open');
+            this.setAttribute('aria-expanded', isOpen);
+        });
+
+        const navLinks = mainNav.querySelectorAll('a');
+        navLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    mainNav.classList.remove('open');
+                    navToggle.classList.remove('active');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+        document.addEventListener('click', function(e) {
+            const header = document.querySelector('.header');
+            if (window.innerWidth <= 768) {
+                if (!header.contains(e.target) && mainNav.classList.contains('open')) {
+                    mainNav.classList.remove('open');
+                    navToggle.classList.remove('active');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                }
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId !== '#') {
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        e.preventDefault();
+                        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        console.log('🌟 মজলিস অনলাইন লাইব্রেরি — বিবিধ বিভাগ');
+    </script>
+
+</body>
+</html>
